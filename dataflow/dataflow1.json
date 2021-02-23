@@ -1,0 +1,28 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "csvDataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tdate_created as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss',\n\t\tuser_created as string,\n\t\tdate_modified as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tinferDriftedColumnTypes: true) ~> source1\nsource1 sink(input(\n\t\tdate_created as timestamp,\n\t\tuser_created as string,\n\t\tdate_modified as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tdateFormat:'yyyy/MM/dd',\n\ttimestampFormat:'yyyy-MM-dd\\'T\\'HH:mm:ss',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
+		}
+	}
+}
