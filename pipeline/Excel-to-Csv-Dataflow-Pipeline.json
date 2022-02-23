@@ -1,0 +1,81 @@
+{
+	"name": "Excel-to-Csv-Dataflow-Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "for-each-config-row",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.ConfigRow",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "innerValue",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "dataflow1",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [
+								{
+									"activity": "Set variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "1.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "dataflow1",
+									"type": "DataFlowReference"
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"ConfigRow": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"innerValue": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "SPO"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-01-01T10:59:04Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

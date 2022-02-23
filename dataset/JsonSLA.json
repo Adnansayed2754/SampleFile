@@ -1,0 +1,27 @@
+{
+	"name": "JsonSLA",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "JsonOmkarGen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "EmpEmail.json",
+				"fileSystem": "web-container"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Email": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,20 @@
+{
+	"name": "ExcelBridgeStone",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ExcelLink",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "SumitData",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "excel-files"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

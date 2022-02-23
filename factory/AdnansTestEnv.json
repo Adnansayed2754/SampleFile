@@ -1,0 +1,15 @@
+{
+	"name": "AdnansTestEnv",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned,UserAssigned",
+		"principalId": "1a41e923-000e-4fe3-abb3-b0bd90e7e118",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+		"userAssignedIdentities": {
+			"/subscriptions/f002a2ff-6c55-4d1d-9a6d-baf73f1b9dd6/resourcegroups/Adnan/providers/Microsoft.ManagedIdentity/userAssignedIdentities/DataFactMI": {
+				"clientId": "42f5cc3f-aa9f-4215-817d-c98d2caa0cca",
+				"principalId": "89ae64fa-fa13-4538-b8ca-c973c258a47b"
+			}
+		}
+	}
+}

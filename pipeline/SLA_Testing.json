@@ -1,0 +1,74 @@
+{
+	"name": "SLA_Testing",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://gen2omkarrepro.blob.core.windows.net/web-container/EmpEmails.csv",
+					"method": "PUT",
+					"headers": {
+						"Authorization ": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1yNS1BVWliZkJpaTdOZDFqQmViYXhib1hXMCIsImtpZCI6Ik1yNS1BVWliZkJpaTdOZDFqQmViYXhib1hXMCJ9.eyJhdWQiOiJodHRwczovL3N0b3JhZ2UuYXp1cmUuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvNzJmOTg4YmYtODZmMS00MWFmLTkxYWItMmQ3Y2QwMTFkYjQ3LyIsImlhdCI6MTY0MDg3NjAzNCwibmJmIjoxNjQwODc2MDM0LCJleHAiOjE2NDA5NjI3MzQsImFpbyI6IkUyWmdZTGhuSXZVbDIrMlo0Sm5vM2ViWDdwVnZBQUE9IiwiYXBwaWQiOiJiM2M5OTFiYy1iMDk1LTQ0Y2UtODQ5ZC1mODUzOTgxNmM1YzYiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83MmY5ODhiZi04NmYxLTQxYWYtOTFhYi0yZDdjZDAxMWRiNDcvIiwib2lkIjoiMTQwOTgyYzItMTFmYS00NGI3LTljN2EtOGE5MzYyOTQxZDU2IiwicmgiOiIwLkFSb0F2NGo1Y3ZHR3IwR1JxeTE4MEJIYlI3eVJ5Yk9Wc001RWhKMzRVNWdXeGNZYUFBQS4iLCJzdWIiOiIxNDA5ODJjMi0xMWZhLTQ0YjctOWM3YS04YTkzNjI5NDFkNTYiLCJ0aWQiOiI3MmY5ODhiZi04NmYxLTQxYWYtOTFhYi0yZDdjZDAxMWRiNDciLCJ1dGkiOiI3YVRMczJPYVRrdUsxVHI2NlMyMUFRIiwidmVyIjoiMS4wIn0.TbBJvdpa79-_p7yb9XdiHXAZQ5dOLSVvyeRqIllA1JWCsqfsDPcqf2X7bm3-eBPHpKGfBe8_R8Q1vD06Aa7Jxll328il8hcMTFMChmpipHtP-DB6ChXK0093gbJgX3NCxyKbO8qB6FkzoLQSOBRNTF4Vq-D-yNKmRWw_wCljigbZguXfjwT_-jE89p9QTdvGcU1OZyKWu1Fe2qqGFIJAR9efdOJ5TwgUwCzOzZ3mOIusiI46i2bwGfbAOUrlJ9lo1uBm-HPx0cMx9SV3rLhktfiN0qQRXZaVYHw9SsaKqhTQcLyxNtWpAh0zW1gT8ssyDdLhcfV4CTM3juWD2z3sBQ",
+						"x-ms-version": "2019-12-12",
+						"x-ms-blob-type": "Blockblob"
+					},
+					"body": {
+						"value": "@concat('query=SELECT * FROM ''',activity('Lookup1').output.value,'''')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-12-30T15:04:30Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,12 @@
+{
+	"name": "AzureDataLakeStorage1",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/f002a2ff-6c55-4d1d-9a6d-baf73f1b9dd6/resourceGroups/Adnan/providers/Microsoft.Storage/storageAccounts/gen2omkarrepro",
+		"groupId": "dfs",
+		"fqdns": [
+			"gen2omkarrepro.dfs.core.windows.net"
+		],
+		"ipAddress": "10.250.0.4",
+		"resourceId": "/subscriptions/920ceef4-a399-469c-a82b-cd89d776116b/resourceGroups/vnet-920ceef4-eastus-84-rg/providers/Microsoft.Network/privateEndpoints/adnanstestenv.AzureDataLakeStorage1"
+	}
+}

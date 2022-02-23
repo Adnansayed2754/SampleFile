@@ -1,0 +1,122 @@
+{
+	"name": "BridgeStone_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy-files-to-datalake",
+				"description": "This web activity calls logic app flow to copy files from sharepoint to azure datalake ",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "https://prod-00.northeurope.logic.azure.com:443/workflows/caf97f8f7ed94fdb91c7aa3fc4729013/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CVpga97Slpp9SOYsCrdrJT0yOoUZ127HSw2UYz20t-4",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"body": {
+						"value": "{\n    \"Pipeline\":\"@{pipeline().Pipeline}\",\n    \"DatafactoryName\":\"@{pipeline().DataFactory}\",\n    \"RunID\":\"@{pipeline().RunId}\"\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "get-file-share-config-sqldb",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "wait-5-seconds",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT * from @{pipeline().parameters.ConfigTable} where isActive='True'\nIF @@ROWCOUNT = 0 THROW 50000,'No rows in configuration table!',1",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "WorkitemSQL",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "wait-5-seconds",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "copy-files-to-datalake",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 5
+				}
+			},
+			{
+				"name": "excel-to-csv-dataflow-pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "get-file-share-config-sqldb",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Excel-to-Csv-Dataflow-Pipeline",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": false,
+					"parameters": {
+						"ConfigRow": {
+							"value": "@activity('get-file-share-config-sqldb').output.value",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"ConfigTable": {
+				"type": "string",
+				"defaultValue": "dbo.BridgeStoneSQL"
+			}
+		},
+		"folder": {
+			"name": "SPO"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-31T09:54:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

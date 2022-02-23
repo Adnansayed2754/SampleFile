@@ -1,0 +1,90 @@
+{
+	"name": "BridgeStone",
+	"properties": {
+		"activities": [
+			{
+				"name": "get-file-share-config-sqldb",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "wait-5-seconds",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT * from @{pipeline().parameters.ConfigTable} \n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "WorkitemSQL",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "wait-5-seconds",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "excel-to-csv-dataflow-pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "get-file-share-config-sqldb",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Excel-to-Csv-Dataflow-Pipeline",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": false,
+					"parameters": {
+						"ConfigRow": {
+							"value": "@pipeline().parameters.ConfigTable",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"ConfigTable": {
+				"type": "string",
+				"defaultValue": "dbo.BridgeStoneSQL"
+			}
+		},
+		"folder": {
+			"name": "SPO"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-01-01T10:59:05Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

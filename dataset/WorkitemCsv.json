@@ -1,0 +1,121 @@
+{
+	"name": "WorkitemCsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Link_SQL_Blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Workitems.csv",
+				"container": "naam-mai-kya-rakhahai"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "WorkItemId",
+				"type": "String"
+			},
+			{
+				"name": "Title",
+				"type": "String"
+			},
+			{
+				"name": "WorkItemType",
+				"type": "String"
+			},
+			{
+				"name": "TeamProject",
+				"type": "String"
+			},
+			{
+				"name": "Reason",
+				"type": "String"
+			},
+			{
+				"name": "IterationPath",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "String"
+			},
+			{
+				"name": "CreatedByDisplayName",
+				"type": "String"
+			},
+			{
+				"name": "CreatedByImageUrl",
+				"type": "String"
+			},
+			{
+				"name": "CreatedByUniqueName",
+				"type": "String"
+			},
+			{
+				"name": "AssignedToDisplayName",
+				"type": "String"
+			},
+			{
+				"name": "AssignedToImageUrl",
+				"type": "String"
+			},
+			{
+				"name": "AssignedToUniqueName",
+				"type": "String"
+			},
+			{
+				"name": "AreaPath",
+				"type": "String"
+			},
+			{
+				"name": "Priority",
+				"type": "String"
+			},
+			{
+				"name": "TestType",
+				"type": "String"
+			},
+			{
+				"name": "Environment",
+				"type": "String"
+			},
+			{
+				"name": "Product",
+				"type": "String"
+			},
+			{
+				"name": "PuppyType",
+				"type": "String"
+			},
+			{
+				"name": "ScrumMasterDisplayName",
+				"type": "String"
+			},
+			{
+				"name": "ScrumMasterImageUrl",
+				"type": "String"
+			},
+			{
+				"name": "ScrumMasterUniqueName",
+				"type": "String"
+			},
+			{
+				"name": "State",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

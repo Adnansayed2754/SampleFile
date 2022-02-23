@@ -1,0 +1,17 @@
+{
+	"name": "WorkitemSQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "link_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BridgeStoneSQL"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
