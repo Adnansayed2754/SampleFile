@@ -1,0 +1,44 @@
+{
+	"name": "trigger4",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Month",
+				"interval": 1,
+				"startTime": "2021-10-21T09:04:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						10,
+						13,
+						16,
+						19,
+						22,
+						25,
+						28,
+						31,
+						34,
+						37,
+						40,
+						43,
+						46,
+						49,
+						52,
+						55,
+						58
+					],
+					"hours": [
+						0
+					],
+					"monthDays": [
+						1
+					]
+				}
+			}
+		}
+	}
+}

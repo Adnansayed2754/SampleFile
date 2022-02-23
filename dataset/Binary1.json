@@ -1,0 +1,20 @@
+{
+	"name": "Binary1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Binary",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "PT1H.json",
+				"folderPath": "resourceId=/SUBSCRIPTIONS/F002A2FF-6C55-4D1D-9A6D-BAF73F1B9DD6/RESOURCEGROUPS/ADNAN/PROVIDERS/MICROSOFT.DATAFACTORY/FACTORIES/ADNANSTESTENV/y=2021/m=10/d=26/h=12/m=00",
+				"fileSystem": "insights-logs-activityruns"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "CICDTestEnv",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2af552f9-1e4c-428f-8394-7386c1d71cec",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
