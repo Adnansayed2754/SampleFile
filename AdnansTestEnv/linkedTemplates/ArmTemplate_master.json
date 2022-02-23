@@ -1,0 +1,225 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "AdnansTestEnv"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureTableStorageGiveitAname_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureTableStorageGiveitAname'"
+		},
+		"Binary_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Binary'"
+		},
+		"ExcelLink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ExcelLink'"
+		},
+		"GiveitAlink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'GiveitAlink'"
+		},
+		"JsonLink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'JsonLink'"
+		},
+		"JsonOmkarGen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'JsonOmkarGen2'"
+		},
+		"JsonTestGen2Omkar_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'JsonTestGen2Omkar'"
+		},
+		"Link_SQL_Blob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Link_SQL_Blob'"
+		},
+		"linkExcel_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'linkExcel'"
+		},
+		"link_SQL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'link_SQL'"
+		},
+		"Binary_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://gen2omkarrepro.dfs.core.windows.net/"
+		},
+		"ExcelLink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"GiveitAlink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://giveitaname.dfs.core.windows.net"
+		},
+		"JsonLink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"JsonOmkarGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"JsonTestGen2Omkar_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"linkExcel_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorage1_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/f002a2ff-6c55-4d1d-9a6d-baf73f1b9dd6/resourceGroups/Adnan/providers/Microsoft.Storage/storageAccounts/gen2omkarrepro"
+		},
+		"AzureDataLakeStorage1_properties_groupId": {
+			"type": "string",
+			"defaultValue": "dfs"
+		},
+		"AzureDataLakeStorage1_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"gen2omkarrepro.dfs.core.windows.net"
+			]
+		},
+		"AzureDataLakeStorage1_properties_ipAddress": {
+			"type": "string",
+			"defaultValue": "10.250.0.4"
+		},
+		"AzureDataLakeStorage1_properties_resourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/920ceef4-a399-469c-a82b-cd89d776116b/resourceGroups/vnet-920ceef4-eastus-84-rg/providers/Microsoft.Network/privateEndpoints/adnanstestenv.AzureDataLakeStorage1"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "AdnansTestEnv_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureTableStorageGiveitAname_connectionString": {
+						"value": "[parameters('AzureTableStorageGiveitAname_connectionString')]"
+					},
+					"Binary_accountKey": {
+						"value": "[parameters('Binary_accountKey')]"
+					},
+					"ExcelLink_accountKey": {
+						"value": "[parameters('ExcelLink_accountKey')]"
+					},
+					"JsonLink_accountKey": {
+						"value": "[parameters('JsonLink_accountKey')]"
+					},
+					"JsonOmkarGen2_accountKey": {
+						"value": "[parameters('JsonOmkarGen2_accountKey')]"
+					},
+					"JsonTestGen2Omkar_accountKey": {
+						"value": "[parameters('JsonTestGen2Omkar_accountKey')]"
+					},
+					"Link_SQL_Blob_connectionString": {
+						"value": "[parameters('Link_SQL_Blob_connectionString')]"
+					},
+					"linkExcel_accountKey": {
+						"value": "[parameters('linkExcel_accountKey')]"
+					},
+					"link_SQL_connectionString": {
+						"value": "[parameters('link_SQL_connectionString')]"
+					},
+					"Binary_properties_typeProperties_url": {
+						"value": "[parameters('Binary_properties_typeProperties_url')]"
+					},
+					"ExcelLink_properties_typeProperties_url": {
+						"value": "[parameters('ExcelLink_properties_typeProperties_url')]"
+					},
+					"JsonLink_properties_typeProperties_url": {
+						"value": "[parameters('JsonLink_properties_typeProperties_url')]"
+					},
+					"JsonOmkarGen2_properties_typeProperties_url": {
+						"value": "[parameters('JsonOmkarGen2_properties_typeProperties_url')]"
+					},
+					"JsonTestGen2Omkar_properties_typeProperties_url": {
+						"value": "[parameters('JsonTestGen2Omkar_properties_typeProperties_url')]"
+					},
+					"linkExcel_properties_typeProperties_url": {
+						"value": "[parameters('linkExcel_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "AdnansTestEnv_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"GiveitAlink_accountKey": {
+						"value": "[parameters('GiveitAlink_accountKey')]"
+					},
+					"GiveitAlink_properties_typeProperties_url": {
+						"value": "[parameters('GiveitAlink_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage1_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_privateLinkResourceId')]"
+					},
+					"AzureDataLakeStorage1_properties_groupId": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_groupId')]"
+					},
+					"AzureDataLakeStorage1_properties_fqdns": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_fqdns')]"
+					},
+					"AzureDataLakeStorage1_properties_ipAddress": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_ipAddress')]"
+					},
+					"AzureDataLakeStorage1_properties_resourceId": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_resourceId')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'AdnansTestEnv_ArmTemplate_0')]"
+			]
+		}
+	]
+}

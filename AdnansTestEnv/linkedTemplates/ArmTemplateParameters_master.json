@@ -1,0 +1,86 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "AdnansTestEnv"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureTableStorageGiveitAname_connectionString": {
+			"value": ""
+		},
+		"Binary_accountKey": {
+			"value": ""
+		},
+		"ExcelLink_accountKey": {
+			"value": ""
+		},
+		"GiveitAlink_accountKey": {
+			"value": ""
+		},
+		"JsonLink_accountKey": {
+			"value": ""
+		},
+		"JsonOmkarGen2_accountKey": {
+			"value": ""
+		},
+		"JsonTestGen2Omkar_accountKey": {
+			"value": ""
+		},
+		"Link_SQL_Blob_connectionString": {
+			"value": ""
+		},
+		"linkExcel_accountKey": {
+			"value": ""
+		},
+		"link_SQL_connectionString": {
+			"value": ""
+		},
+		"Binary_properties_typeProperties_url": {
+			"value": "https://gen2omkarrepro.dfs.core.windows.net/"
+		},
+		"ExcelLink_properties_typeProperties_url": {
+			"value": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"GiveitAlink_properties_typeProperties_url": {
+			"value": "https://giveitaname.dfs.core.windows.net"
+		},
+		"JsonLink_properties_typeProperties_url": {
+			"value": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"JsonOmkarGen2_properties_typeProperties_url": {
+			"value": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"JsonTestGen2Omkar_properties_typeProperties_url": {
+			"value": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"linkExcel_properties_typeProperties_url": {
+			"value": "https://gen2omkarrepro.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorage1_properties_privateLinkResourceId": {
+			"value": "/subscriptions/f002a2ff-6c55-4d1d-9a6d-baf73f1b9dd6/resourceGroups/Adnan/providers/Microsoft.Storage/storageAccounts/gen2omkarrepro"
+		},
+		"AzureDataLakeStorage1_properties_groupId": {
+			"value": "dfs"
+		},
+		"AzureDataLakeStorage1_properties_fqdns": {
+			"value": [
+				"gen2omkarrepro.dfs.core.windows.net"
+			]
+		},
+		"AzureDataLakeStorage1_properties_ipAddress": {
+			"value": "10.250.0.4"
+		},
+		"AzureDataLakeStorage1_properties_resourceId": {
+			"value": "/subscriptions/920ceef4-a399-469c-a82b-cd89d776116b/resourceGroups/vnet-920ceef4-eastus-84-rg/providers/Microsoft.Network/privateEndpoints/adnanstestenv.AzureDataLakeStorage1"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
