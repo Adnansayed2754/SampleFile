@@ -70,11 +70,8 @@
 				"gen2omkarrepro.dfs.core.windows.net"
 			]
 		},
-		"AzureDataLakeStorage1_properties_ipAddress": {
-			"value": "10.250.0.4"
-		},
-		"AzureDataLakeStorage1_properties_resourceId": {
-			"value": "/subscriptions/920ceef4-a399-469c-a82b-cd89d776116b/resourceGroups/vnet-920ceef4-eastus-84-rg/providers/Microsoft.Network/privateEndpoints/adnanstestenv.AzureDataLakeStorage1"
+		"Eventtrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/f002a2ff-6c55-4d1d-9a6d-baf73f1b9dd6/resourceGroups/Adnan/providers/Microsoft.Storage/storageAccounts/giveitaname"
 		},
 		"containerUri": {
 			"value": ""

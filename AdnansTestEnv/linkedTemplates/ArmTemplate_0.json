@@ -77,7 +77,56 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/CICD_copy1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 1
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-12-21T15:41:06Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Git')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 1
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gitity')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -255,6 +304,192 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/trigger 1 2 3')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 15,
+						"startTime": "2021-10-16T09:36:00Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger2')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Month",
+						"interval": 1,
+						"startTime": "2021-10-21T08:54:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								3,
+								6,
+								9,
+								12,
+								15,
+								18,
+								21,
+								24,
+								27,
+								30,
+								33,
+								36,
+								39,
+								42,
+								45,
+								48,
+								52,
+								55,
+								58
+							],
+							"hours": [
+								12,
+								13,
+								14,
+								15,
+								16,
+								17,
+								18,
+								19,
+								20,
+								21,
+								22,
+								23
+							],
+							"monthDays": [
+								1,
+								2,
+								3,
+								4,
+								5,
+								7,
+								6,
+								8,
+								10,
+								9,
+								15,
+								16,
+								22,
+								23,
+								29,
+								30,
+								31,
+								24,
+								-1,
+								25,
+								17,
+								11,
+								18,
+								12,
+								19,
+								26,
+								27,
+								20,
+								13,
+								14,
+								21,
+								28
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger3')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Month",
+						"interval": 1,
+						"startTime": "2021-10-21T08:57:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"hours": [
+								14
+							],
+							"monthDays": [
+								1
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger4')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Month",
+						"interval": 1,
+						"startTime": "2021-10-21T09:04:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								10,
+								13,
+								16,
+								19,
+								22,
+								25,
+								28,
+								31,
+								34,
+								37,
+								40,
+								43,
+								46,
+								49,
+								52,
+								55,
+								58
+							],
+							"hours": [
+								0
+							],
+							"monthDays": [
+								1
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/bhvmas')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -304,264 +539,6 @@
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/default')]",
-			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
-			"apiVersion": "2018-06-01",
-			"properties": {},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SlaMonitoringPipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Web_GetToken",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": " http://localhost:8082/api/bearer",
-							"connectVia": {
-								"referenceName": "bhvmas",
-								"type": "IntegrationRuntimeReference"
-							},
-							"method": "GET",
-							"headers": {}
-						}
-					},
-					{
-						"name": "Web_GetCaseList",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "Web_GetToken",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://api.support.microsoft.com/v0/queryresult",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/x-www-form-urlencoded",
-								"Authorization": {
-									"value": "@concat('Bearer ',split(activity('Web_GetToken').output.Response,'\"')[1])",
-									"type": "Expression"
-								}
-							},
-							"body": "query=SELECT ExpiresOn,MSEG.QueryService.V1.SlaItem.casenumber,MSEG.QueryService.V1.Case_v1.AgentId,Datediff(minute,Getutcdate(),ExpiresOn\n ) FROM MSEG.QueryService.V1.SlaItem inner join MSEG.QueryService.V1.Case_v1 on \nMSEG.QueryService.V1.SlaItem.casenumber=MSEG.QueryService.V1.Case_v1.casenumber WHERE MSEG.QueryService.V1.Case_v1.AgentId in ('yuzhang4@microsoftsupport.com','bohzhan@microsoftsupport.com','jingli3@microsoftsupport.com','jinleiwang@microsoftsupport.com','jinpu@microsoftsupport.com','junjliu@microsoftsupport.com','rongli@microsoftsupport.com','ruoli@microsoftsupport.com','weyi@microsoftsupport.com','yofe@microsoftsupport.com','yud@microsoftsupport.com','yufwan@microsoftsupport.com','yuzhang4@microsoftsupport.com') and MSEG.QueryService.V1.SlaItem.State='Pending' and MSEG.QueryService.V1.SlaItem.SlaType='InitialResponse'"
-						}
-					},
-					{
-						"name": "ForEach",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Web_GetCaseList",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Web_GetCaseList').output.table_parameters[0].table_parameter_result",
-								"type": "Expression"
-							},
-							"activities": [
-								{
-									"name": "If Condition",
-									"type": "IfCondition",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"expression": {
-											"value": "@lessOrEquals(int(item()[3]),30)",
-											"type": "Expression"
-										},
-										"ifTrueActivities": [
-											{
-												"name": "SendEmail",
-												"type": "WebActivity",
-												"dependsOn": [],
-												"policy": {
-													"timeout": "7.00:00:00",
-													"retry": 0,
-													"retryIntervalInSeconds": 30,
-													"secureOutput": false,
-													"secureInput": false
-												},
-												"userProperties": [],
-												"typeProperties": {
-													"url": "https://bohansla.azurewebsites.net:443/api/slaEmail/triggers/manual/invoke?api-version=2020-05-01-preview&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=W16P_QHljnrO1WybjSpNIBqUiwTt86tjqbX7o5LmKRo",
-													"method": "POST",
-													"headers": {
-														"Content-Type": "application/json"
-													},
-													"body": {
-														"value": "{\n   \"DataFactoryName\": \"@{pipeline().DataFactory}\",\n   \"PipelineRunID\": \"@{pipeline().RunId}\",\n   \"TimeRemaining\": \"@{item()[3]}\",\n   \"CaseNumber\": \"@{item()[1]}\",\n   \"EmailTo\": \"@{item()[2]}\",\n   \"CaseOwner\": \"@{item()[2]}\"\n}\t",
-														"type": "Expression"
-													}
-												}
-											}
-										]
-									}
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"variables": {
-					"token": {
-						"type": "String"
-					},
-					"item": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "SLA"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-10-21T12:24:57Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/bhvmas')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CSVBridgeStone')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "csv-files"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Empdet.csv",
-						"container": "web-container"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ExcelBridgeStone')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ExcelLink",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "SumitData",
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "excel-files"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ExcelLink')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/JsonSLA')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "JsonOmkarGen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "EmpEmail.json",
-						"fileSystem": "web-container"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"Email": {
-							"type": "string"
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/JsonOmkarGen2')]"
-			]
 		}
 	]
 }

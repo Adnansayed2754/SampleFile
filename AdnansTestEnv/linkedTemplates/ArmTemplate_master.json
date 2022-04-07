@@ -93,13 +93,9 @@
 				"gen2omkarrepro.dfs.core.windows.net"
 			]
 		},
-		"AzureDataLakeStorage1_properties_ipAddress": {
+		"Eventtrigger_properties_typeProperties_scope": {
 			"type": "string",
-			"defaultValue": "10.250.0.4"
-		},
-		"AzureDataLakeStorage1_properties_resourceId": {
-			"type": "string",
-			"defaultValue": "/subscriptions/920ceef4-a399-469c-a82b-cd89d776116b/resourceGroups/vnet-920ceef4-eastus-84-rg/providers/Microsoft.Network/privateEndpoints/adnanstestenv.AzureDataLakeStorage1"
+			"defaultValue": "/subscriptions/f002a2ff-6c55-4d1d-9a6d-baf73f1b9dd6/resourceGroups/Adnan/providers/Microsoft.Storage/storageAccounts/giveitaname"
 		},
 		"containerUri": {
 			"type": "string",
@@ -209,16 +205,33 @@
 					"AzureDataLakeStorage1_properties_fqdns": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_fqdns')]"
 					},
-					"AzureDataLakeStorage1_properties_ipAddress": {
-						"value": "[parameters('AzureDataLakeStorage1_properties_ipAddress')]"
-					},
-					"AzureDataLakeStorage1_properties_resourceId": {
-						"value": "[parameters('AzureDataLakeStorage1_properties_resourceId')]"
+					"Eventtrigger_properties_typeProperties_scope": {
+						"value": "[parameters('Eventtrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'AdnansTestEnv_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "AdnansTestEnv_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'AdnansTestEnv_ArmTemplate_1')]"
 			]
 		}
 	]
