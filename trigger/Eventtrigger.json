@@ -1,0 +1,17 @@
+{
+	"name": "Eventtrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/purviewsscan/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/f002a2ff-6c55-4d1d-9a6d-baf73f1b9dd6/resourceGroups/Adnan/providers/Microsoft.Storage/storageAccounts/giveitaname",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
