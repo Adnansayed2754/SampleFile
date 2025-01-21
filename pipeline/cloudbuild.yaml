@@ -6,3 +6,11 @@ steps:
   # Push the Docker image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/my-image:$COMMIT_SHA']
+
+# Options for logging with a service account
+options:
+  logging: CLOUD_LOGGING_ONLY  # Use Cloud Logging only
+  # OR
+  # default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET 
+  # OR
+  # logs_bucket: 'gs://your-logs-bucket' # Specify a Cloud Storage bucket
